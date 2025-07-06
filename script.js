@@ -2,9 +2,24 @@ const body = document.querySelector("body");
 const table = document.querySelector("table");
 
 const myLibrary = [
-  { title: "The Bible", author: "GOD", pages: "a lot", read: "not read yet" },
-  { title: "The Koran", author: "GOD", pages: "a lot", read: "not read yet" },
-  { title: "The Tanach", author: "GOD", pages: "a lot", read: "not read yet" },
+  {
+    title: "The Bible",
+    author: "GOD",
+    pages: "a lot",
+    read: "not read yet",
+  },
+  {
+    title: "The Koran",
+    author: "GOD",
+    pages: "a lot",
+    read: "not read yet",
+  },
+  {
+    title: "The Tanach",
+    author: "GOD",
+    pages: "a lot",
+    read: "not read yet",
+  },
   {
     title: "Pastafari",
     author: "Fliegendes Spaghettimonster",
@@ -36,7 +51,7 @@ function addBookToLibrary(title, author, pages, read) {
 
 console.log(myLibrary);
 console.log(addBookToLibrary("lol", "lolus", "77", "not read yet"));
-// console.log(addBookToLibrary("test", "test2", "122", "read"));
+console.log(addBookToLibrary("test", "test2", "122", "read"));
 
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
@@ -49,4 +64,11 @@ function displayBooks() {
   }
 }
 
+function addButton() {
+    const newBookButton = document.createElement("button");
+    newBookButton.textContent = "New Book";
+    body.appendChild(newBookButton);
+}
+
 displayBooks();
+addButton();
