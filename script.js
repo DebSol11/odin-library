@@ -11,16 +11,6 @@ const myLibrary = [
     pages: "a lot",
   },
   {
-    title: "The Koran",
-    author: "?",
-    pages: "a lot",
-  },
-  {
-    title: "The Tanach",
-    author: "?",
-    pages: "a lot",
-  },
-  {
     title: "Pastafari",
     author: "Fliegendes Spaghettimonster",
     pages: "a lot",
@@ -75,29 +65,22 @@ const form = document.querySelector("form");
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
   storeInput();
+  displayBooks();
 });
 
-function storeInput() {
+function addInput() {
   // Initialize an empty object
   let inputObject = {};
-
   // Get the input elements
   const title = document.getElementById("title");
   const author = document.getElementById("author");
   const pages = document.getElementById("pages");
-
   // Add the values to the object
   inputObject = {
     title: title.value,
     author: author.value,
     pages: pages.value,
   };
-
-  //cAdd the object to the array
+  //Add the object to the array
   myLibrary.push(inputObject)
-
-  // Print the input Object to the console
-  console.log(inputObject);
-  // Print the myLibrary Array to the console
-  console.log(myLibrary);
 }
