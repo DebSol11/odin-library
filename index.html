@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Project: Library</title>
-</head>
-<body>
+  </head>
+  <body>
     <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Read</th>
-        </tr>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Read</th>
+      </tr>
     </table>
-</body>
+
+    `
+    <form action="example.com/path" method="post">
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" placeholder="The Bible" />
+      <label for="author">Author:</label>
+      <input type="text" id="author" name="author" placeholder="Through God" />
+      <label for="pages">Pages:</label>
+      <input type="number" id="pages" name="pages" placeholder="50" />
+      <label for="read">read?</label>
+      <input type="radio" id="read" name="read_status" value="read" />
+      <label for="not read yet">not read yet?</label>
+      <input type="radio" id="not read yet" name="read_status" value="not read yet" />
+    </form>
+  </body>
 </html>
