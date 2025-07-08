@@ -2,6 +2,7 @@
 const body = document.querySelector("body");
 const table = document.querySelector("table");
 const submitBtn = document.querySelector("#submitBtn");
+const bookRows = document.querySelectorAll(".bookEntity")
 
 // Global Scope Array of Objects
 const myLibrary = [
@@ -41,6 +42,7 @@ console.log(addBookToLibrary("test", "test2", "122", "false"));
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let content = document.createElement("tr");
+    content.classList.add("bookEntity");
     content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>`;
@@ -64,7 +66,7 @@ const form = document.querySelector("form");
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  storeInput();
+  addInput();
   displayBooks();
 });
 
@@ -83,4 +85,8 @@ function addInput() {
   };
   //Add the object to the array
   myLibrary.push(inputObject)
+}
+
+function clearBrowserWindow() {
+
 }
