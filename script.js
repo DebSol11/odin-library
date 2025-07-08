@@ -2,7 +2,8 @@
 const body = document.querySelector("body");
 const table = document.querySelector("table");
 const submitBtn = document.querySelector("#submitBtn");
-const bookRows = document.querySelectorAll(".bookEntity")
+
+// Convert the nodeList into an array
 
 // Global Scope Array of Objects
 const myLibrary = [
@@ -66,6 +67,11 @@ const form = document.querySelector("form");
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
+  const bookRows = document.querySelectorAll(".bookEntity");
+  let bookRowsArray = Array.from(bookRows);
+  console.log(bookRows);
+  console.log(bookRowsArray);
+  bookRowsArray.innerHTML = "";
   addInput();
   displayBooks();
 });
