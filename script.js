@@ -1,9 +1,7 @@
 // Selectors
 const body = document.querySelector("body");
-const table = document.querySelector("table");
+const tableBody = document.querySelector("tbody");
 const submitBtn = document.querySelector("#submitBtn");
-
-// Convert the nodeList into an array
 
 // Global Scope Array of Objects
 const myLibrary = [
@@ -43,11 +41,11 @@ console.log(addBookToLibrary("test", "test2", "122", "false"));
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let content = document.createElement("tr");
-    content.classList.add("bookEntity");
+    content.classList.add(`bookEntity${i}`);
     content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>`;
-    table.appendChild(content);
+    tableBody.appendChild(content);
   }
 }
 
@@ -67,11 +65,7 @@ const form = document.querySelector("form");
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  const bookRows = document.querySelectorAll(".bookEntity");
-  let bookRowsArray = Array.from(bookRows);
-  console.log(bookRows);
-  console.log(bookRowsArray);
-  bookRowsArray.innerHTML = "";
+  clearTable()
   addInput();
   displayBooks();
 });
@@ -90,9 +84,16 @@ function addInput() {
     pages: pages.value,
   };
   //Add the object to the array
-  myLibrary.push(inputObject)
+  myLibrary.push(inputObject);
 }
 
-function clearBrowserWindow() {
-
+function clearTable() {
+  const rowCount = tableBody.rows.length; // Get the number of rows
+  // Loop through rows in reverse and delete each one
+  console.log(rowCount);
+  for (let i = rowCount - 1; i >= 0; i--) {
+    // The deleteRow method removes rows based on their index.
+    // The loop starts from the last row and goes backwards. When we loop in forward, the position (index) of the remaining rows would change after each deletion. So to prevent this issue, we loop in reverse.
+    tableBody.deleteRow(i);
+  }
 }
