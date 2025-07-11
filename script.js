@@ -7,13 +7,17 @@ const submitBtn = document.querySelector("#submitBtn");
 const myLibrary = [
   {
     title: "The Bible",
-    author: "?",
+    author: "David, Lukas, Moses, et al.",
     pages: "a lot",
+    read: false,
+    notRead: "true",
   },
   {
     title: "Pastafari",
     author: "Fliegendes Spaghettimonster",
     pages: "a lot",
+    read: false,
+    notRead: "true",
   },
 ];
 
@@ -35,8 +39,10 @@ function addBookToLibrary(title, author, pages) {
 }
 
 console.log(myLibrary);
-console.log(addBookToLibrary("lol", "lolus", "77", "true"));
-console.log(addBookToLibrary("test", "test2", "122", "false"));
+console.log(
+  addBookToLibrary("Safternte im Hodenland", "Gilderoy Fickhardt", "77")
+);
+console.log(addBookToLibrary("Ariel die nicht mehr Junfrau", "Ariel", "122"));
 
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
@@ -44,7 +50,17 @@ function displayBooks() {
     content.classList.add(`bookEntity${i}`);
     content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
-            <td>${myLibrary[i].pages}</td>`;
+            <td>${myLibrary[i].pages}</td>
+            <td>
+            <label for="read">
+            <input type="radio" id="read" name="read-status${i}">
+            </label>
+            </td>
+            <td>
+            <label for="notRead">
+            <input type="radio" id="notRead" name="read-status${i}" checked>
+            </label>
+            </td>`;
     tableBody.appendChild(content);
   }
 }
@@ -65,7 +81,7 @@ const form = document.querySelector("form");
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  clearTable()
+  clearTable();
   addInput();
   displayBooks();
 });

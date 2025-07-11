@@ -14,6 +14,8 @@
           <th>Title</th>
           <th>Author</th>
           <th>Pages</th>
+          <th>read</th>
+          <th>not read</th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +29,10 @@
       <input type="text" id="author" name="author" placeholder="Who knows?" />
       <label for="pages">Pages:</label>
       <input type="number" id="pages" name="pages" placeholder="50" />
+      <label for="read">read</label>
+      <input type="radio" id="read" name="read-status" value="read"/>
+      <label for="not-read">not read</label>
+      <input type="radio" id="not-read" name="read-status" value="not-read" checked/>
       <button type="submit" id="submitBtn">Submit</button>
     </form>
   </body>
