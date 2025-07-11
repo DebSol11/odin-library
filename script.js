@@ -10,7 +10,7 @@ const myLibrary = [
     author: "David, Lukas, Moses, et al.",
     pages: "a lot",
     read: false,
-    notRead: "true",
+    notRead: true, //Issues to solve 
   },
   {
     title: "Pastafari",
