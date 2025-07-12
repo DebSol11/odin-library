@@ -12,13 +12,15 @@ const myLibrary = [
     title: "The Bible",
     author: "David, Lukas, Moses, et al.",
     pages: "a lot",
+    id: self.crypto.randomUUID(),
     read: false,
-    notRead: true, //Issues to solve 
+    notRead: true, //Issues to solve
   },
   {
     title: "Pastafari",
     author: "Fliegendes Spaghettimonster",
     pages: "a lot",
+    id: self.crypto.randomUUID(),
     read: false,
     notRead: "true",
   },
@@ -42,15 +44,14 @@ function addBookToLibrary(title, author, pages) {
 }
 
 console.log(myLibrary);
-console.log(
-  addBookToLibrary("Safternte im Hodenland", "Gilderoy Fickhardt", "77")
-);
-console.log(addBookToLibrary("Ariel die nicht mehr Junfrau", "Ariel", "122"));
+console.log(addBookToLibrary("Testtitel 1", "Testauthor 1", "77"));
+console.log(addBookToLibrary("Testtitel 2", "Testauthor 2", "122"));
 
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let content = document.createElement("tr");
     content.classList.add(`bookEntity${i}`);
+    content.setAttribute("data-id", `${myLibrary[i].id}`)
     content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
@@ -63,7 +64,8 @@ function displayBooks() {
             <label for="notRead">
             <input type="radio" id="notRead" name="read-status${i}" checked>
             </label>
-            </td>`;
+            </td>
+            <td><button type="button" id="removeButton">Remove</button></td>`;
     tableBody.appendChild(content);
   }
 }
@@ -82,7 +84,6 @@ function displayForm() {
 newBookButton.addEventListener("click", () => {
   displayForm();
 });
-
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
