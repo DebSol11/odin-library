@@ -66,13 +66,18 @@ function displayBooks() {
             <input type="radio" id="notRead" name="read-status${i}" checked>
             </label>
             </td>
-            <td><button type="button" id="removeButton${i}" class ="remove-button">Remove</button></td>`;
+            <td class="buttons"><button type="button" id="removeButton${i}" class ="remove-button" onclick="removeBook(${i})">Remove${[i]}</button></td>`;
     tableBody.appendChild(content);
   }
 }
 
-
 displayBooks();
+
+function removeBook(index) {
+  myLibrary.splice(index, 1)
+  clearTable()
+  displayBooks()
+}
 
 const removeButtonsNodeList = document.querySelectorAll(".remove-button");
 
@@ -134,4 +139,3 @@ function addClickListenerForRemoveButton () {
 }
 
 addClickListenerForRemoveButton();
-
