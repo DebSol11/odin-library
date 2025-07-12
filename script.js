@@ -47,11 +47,12 @@ console.log(myLibrary);
 console.log(addBookToLibrary("Testtitel 1", "Testauthor 1", "77"));
 console.log(addBookToLibrary("Testtitel 2", "Testauthor 2", "122"));
 
+
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let content = document.createElement("tr");
     content.classList.add(`bookEntity${i}`);
-    content.setAttribute("data-id", `${myLibrary[i].id}`)
+    content.setAttribute("data-id", `${myLibrary[i].id}`);
     content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
@@ -65,12 +66,15 @@ function displayBooks() {
             <input type="radio" id="notRead" name="read-status${i}" checked>
             </label>
             </td>
-            <td><button type="button" id="removeButton">Remove</button></td>`;
+            <td><button type="button" id="removeButton${i}" class ="remove-button">Remove</button></td>`;
     tableBody.appendChild(content);
   }
 }
 
+
 displayBooks();
+
+const removeButtonsNodeList = document.querySelectorAll(".remove-button");
 
 function displayForm() {
   const form = document.getElementById("formToggle");
@@ -81,9 +85,11 @@ function displayForm() {
   }
 }
 
+
 newBookButton.addEventListener("click", () => {
   displayForm();
 });
+
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
@@ -112,10 +118,20 @@ function addInput() {
 function clearTable() {
   const rowCount = tableBody.rows.length; // Get the number of rows
   // Loop through rows in reverse and delete each one
-  console.log(rowCount);
   for (let i = rowCount - 1; i >= 0; i--) {
     // The deleteRow method removes rows based on their index.
     // The loop starts from the last row and goes backwards. When we loop in forward, the position (index) of the remaining rows would change after each deletion. So to prevent this issue, we loop in reverse.
     tableBody.deleteRow(i);
   }
 }
+
+function addClickListenerForRemoveButton () {
+  for (let i = 0; i < removeButtonsNodeList.length; i++) {
+    removeButtonsNodeList[i].addEventListener("click", (event) => {
+      console.log("Clicked on: #id-" + event.target.id)
+    });
+  }
+}
+
+addClickListenerForRemoveButton();
+
