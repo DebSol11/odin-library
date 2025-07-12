@@ -2,6 +2,9 @@
 const body = document.querySelector("body");
 const tableBody = document.querySelector("tbody");
 const submitBtn = document.querySelector("#submitBtn");
+const newBookButton = document.querySelector(".newBookButton");
+const form = document.querySelector("form");
+const contentWrap = document.querySelector(".content-wrap");
 
 // Global Scope Array of Objects
 const myLibrary = [
@@ -65,19 +68,21 @@ function displayBooks() {
   }
 }
 
-function addButton() {
-  const newBookButton = document.createElement("button");
-  newBookButton.textContent = "New Book";
-  newBookButton.classList.add("newBookButton");
-  body.appendChild(newBookButton);
+displayBooks();
+
+function displayForm() {
+  const form = document.getElementById("formToggle");
+  if (form.style.display === "none" || form.style.display === "") {
+    form.style.display = "block";
+  } else {
+    form.style.display = "none";
+  }
 }
 
-displayBooks();
-addButton();
+newBookButton.addEventListener("click", () => {
+  displayForm();
+});
 
-const newBookButton = document.querySelector(".newBookButton");
-
-const form = document.querySelector("form");
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();

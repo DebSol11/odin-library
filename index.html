@@ -3,38 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
     <title>Project: Library</title>
   </head>
   <body>
-    <table id="myTable">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Pages</th>
-          <th>read</th>
-          <th>not read</th>
-        </tr>
-      </thead>
-      <tbody>
-
-      </tbody>
-    </table>
-    <form action="example.com/path" method="post">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" placeholder="The Bible" />
-      <label for="author">Author:</label>
-      <input type="text" id="author" name="author" placeholder="Who knows?" />
-      <label for="pages">Pages:</label>
-      <input type="number" id="pages" name="pages" placeholder="50" />
-      <!-- <label for="read">read</label>
-      <input type="radio" id="read" name="read-status" value="read"/>
-      <label for="not-read">not read</label>
-      <input type="radio" id="not-read" name="read-status" value="not-read" checked/> -->
-      <!-- These radio buttons need to actually set the selected read-status to the new book-->
-      <button type="submit" id="submitBtn">Submit</button>
-    </form>
+    <div class="content-wrap">
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>read</th>
+            <th>not read</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <form action="example.com/path" method="post" id="formToggle">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" placeholder="The Bible" />
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" placeholder="Who knows?" />
+        <label for="pages">Pages:</label>
+        <input type="number" id="pages" name="pages" placeholder="50" />
+        <!-- <label for="read">read</label>
+        <input type="radio" id="read" name="read-status" value="read"/>
+        <label for="not-read">not read</label>
+        <input type="radio" id="not-read" name="read-status" value="not-read" checked/> -->
+        <!-- These radio buttons need to actually set the selected read-status to the new book5o-->
+        <button type="submit" id="submitBtn">Submit</button>
+      </form>
+      <button class="newBookButton">New Book</button>
+    </div>
   </body>
 </html>
