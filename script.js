@@ -106,7 +106,7 @@ function listenForCheckboxChange() {
 
 function removeBook(index) {
   myLibrary.splice(index, 1);
-  clearTable()
+  clearTable();
   displayBooks();
 }
 
