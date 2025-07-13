@@ -3,24 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Project: Library</title>
   </head>
   <body>
     <div class="content-wrap">
-      <table id="myTable">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Read</th>
-            <th>Remove </th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <button class="newBookButton">New Book</button>
       <form action="example.com/path" method="post" id="formToggle">
         <label for="title">Title:</label>
         <input type="text" id="title" name="title" placeholder="The Bible" />
@@ -30,7 +19,18 @@
         <input type="number" id="pages" name="pages" placeholder="50" />
         <button type="submit" id="submitBtn">Submit</button>
       </form>
-      <button class="newBookButton">New Book</button>
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Read</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
   </body>
 </html>

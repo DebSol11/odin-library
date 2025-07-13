@@ -61,7 +61,7 @@ function displayBooks() {
       content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
-            <td>
+            <td class="checkbox-table-cell">
             <input type="checkbox" class="read-status" id="read${i}" name="read-status">
             </td>
             <td class="buttons"><button type="button" id="removeButton${i}" class="remove-button">Remove</button></td>`;
@@ -69,7 +69,7 @@ function displayBooks() {
       content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
-            <td>
+            <td class="checkbox-table-cell">
             <input type="checkbox" class="read-status" id="read${i}" name="read-status" checked>
             </td>
             <td class="buttons"><button type="button" id="removeButton${i}" class="remove-button">Remove</button></td>`;
@@ -119,7 +119,8 @@ function removeBook(index) {
 function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
   if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "block";
+    form.style.display = "flex";
+    form.style.justifyContent = "center";
   } else {
     form.style.display = "none";
   }
