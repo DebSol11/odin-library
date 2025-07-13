@@ -5,6 +5,7 @@ const submitBtn = document.querySelector("#submitBtn");
 const newBookButton = document.querySelector(".newBookButton");
 const form = document.querySelector("form");
 const contentWrap = document.querySelector(".content-wrap");
+let removeButtonsNodeList;
 
 // Global Scope Array of Objects
 const myLibrary = [
@@ -47,7 +48,6 @@ console.log(myLibrary);
 console.log(addBookToLibrary("Testtitel 1", "Testauthor 1", "77"));
 console.log(addBookToLibrary("Testtitel 2", "Testauthor 2", "122"));
 
-
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let content = document.createElement("tr");
@@ -66,20 +66,28 @@ function displayBooks() {
             <input type="radio" id="notRead" name="read-status${i}" checked>
             </label>
             </td>
-            <td class="buttons"><button type="button" id="removeButton${i}" class ="remove-button" onclick="removeBook(${i})">Remove${[i]}</button></td>`;
+            <td class="buttons"><button type="button" id="removeButton${i}" class ="remove-button">Remove</button></td>`;
     tableBody.appendChild(content);
   }
+  removeButtonsNodeList = document.querySelectorAll(".remove-button");
+  listenForRemoveBtnClick();
 }
 
 displayBooks();
 
-function removeBook(index) {
-  myLibrary.splice(index, 1)
-  clearTable()
-  displayBooks()
+function listenForRemoveBtnClick() {
+  for (let i = 0; i < removeButtonsNodeList.length; i++) {
+    removeButtonsNodeList[i].addEventListener("click", () => {
+      removeBook(i);
+    });
+  }
 }
 
-const removeButtonsNodeList = document.querySelectorAll(".remove-button");
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  clearTable();
+  displayBooks();
+}
 
 function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
@@ -90,11 +98,9 @@ function toggleFormDisplay() {
   }
 }
 
-
 newBookButton.addEventListener("click", () => {
   toggleFormDisplay();
 });
-
 
 submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
@@ -130,13 +136,3 @@ function clearTable() {
     tableBody.deleteRow(i);
   }
 }
-
-function addClickListenerForRemoveButton () {
-  for (let i = 0; i < removeButtonsNodeList.length; i++) {
-    removeButtonsNodeList[i].addEventListener("click", (event) => {
-      console.log("Clicked on: #id-" + event.target.id)
-    });
-  }
-}
-
-addClickListenerForRemoveButton();
