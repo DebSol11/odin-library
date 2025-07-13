@@ -119,8 +119,7 @@ function removeBook(index) {
 function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
   if (form.style.display === "none" || form.style.display === "") {
-    form.style.display = "flex";
-    form.style.justifyContent = "center";
+    form.style.display = "inline";
   } else {
     form.style.display = "none";
   }
