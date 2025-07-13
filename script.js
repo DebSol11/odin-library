@@ -81,7 +81,7 @@ function removeBook(index) {
 
 const removeButtonsNodeList = document.querySelectorAll(".remove-button");
 
-function displayForm() {
+function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
   if (form.style.display === "none" || form.style.display === "") {
     form.style.display = "block";
@@ -92,7 +92,7 @@ function displayForm() {
 
 
 newBookButton.addEventListener("click", () => {
-  displayForm();
+  toggleFormDisplay();
 });
 
 
@@ -101,6 +101,7 @@ submitBtn.addEventListener("click", (event) => {
   clearTable();
   addInput();
   displayBooks();
+  toggleFormDisplay();
 });
 
 function addInput() {
