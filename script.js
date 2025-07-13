@@ -14,30 +14,34 @@ const myLibrary = [
     author: "David, Lukas, Moses, et al.",
     pages: "a lot",
     id: self.crypto.randomUUID(),
-    read: false,
-    notRead: true, //Issues to solve
+    "read-status": "not read",
   },
   {
     title: "Pastafari",
     author: "Fliegendes Spaghettimonster",
     pages: "a lot",
     id: self.crypto.randomUUID(),
-    read: false,
-    notRead: "true",
+    "read-status": "not read",
   },
 ];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
   if (!new.target) {
     throw Error("You must use the 'new' operator to call the constructor");
   }
   this.title = title;
   this.author = author;
   this.pages = pages;
+  this.read = read;
 }
 
-Book.prototype.readStatus = function() {
-  console.log(`Hello, I'm a prototype`)
+Book.prototype.toggleRead = function () {
+  this.read = !this.read;
+};
+
+function toggleRead(index) {
+  myLibrary[index].toggleRead();
+  displayBooks();
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -61,20 +65,16 @@ function displayBooks() {
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
             <td>
-            <label for="read">
-            <input type="radio" id="read" name="read-status${i}">
-            </label>
+            <input type="checkbox" class="read-status" id="read${i}" name="read-status">
             </td>
-            <td>
-            <label for="notRead">
-            <input type="radio" id="notRead" name="read-status${i}" checked>
-            </label>
-            </td>
-            <td class="buttons"><button type="button" id="removeButton${i}" class ="remove-button">Remove</button></td>`;
+            <td class="buttons"><button type="button" id="removeButton${i}" class="remove-button">Remove</button></td>`;
     tableBody.appendChild(content);
   }
   removeButtonsNodeList = document.querySelectorAll(".remove-button");
   listenForRemoveBtnClick();
+  readStatusNodeList = document.querySelectorAll(".read-status");
+  listenForCheckboxChange();
+  console.log(myLibrary);
 }
 
 displayBooks();
@@ -87,11 +87,32 @@ function listenForRemoveBtnClick() {
   }
 }
 
+function listenForCheckboxChange() {
+  for (let i = 0; i < readStatusNodeList.length; i++) {
+    readStatusNodeList[i].addEventListener("change", function(event) {
+      if (event.target.checked) {
+        console.log(event);
+        console.log("Checkbox is checked..");
+        myLibrary[i]["read-status"] = "read";
+        console.log(myLibrary);
+      }else{
+        console.log("Checkbox is not checked ");
+        myLibrary[i]["read-status"] = "not read";
+        console.log(myLibrary);
+      }
+      });
+  }
+}
+
 function removeBook(index) {
   myLibrary.splice(index, 1);
-  clearTable();
+  -
   displayBooks();
 }
+
+// function addReadStatusToMyLibraryArray(index) {
+//   myLibrary[index]["read-status"].value;
+// }
 
 function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
