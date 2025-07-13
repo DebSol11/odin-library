@@ -36,6 +36,10 @@ function Book(title, author, pages) {
   this.pages = pages;
 }
 
+Book.prototype.readStatus = function() {
+  console.log(`Hello, I'm a prototype`)
+}
+
 function addBookToLibrary(title, author, pages) {
   let book = new Book(title, author, pages);
   // Universally Unique Identifier = uuid
