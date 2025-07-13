@@ -13,15 +13,13 @@ const myLibrary = [
     title: "The Bible",
     author: "David, Lukas, Moses, et al.",
     pages: "a lot",
-    id: self.crypto.randomUUID(),
     "read-status": "not read",
   },
   {
     title: "Pastafari",
     author: "Fliegendes Spaghettimonster",
     pages: "a lot",
-    id: self.crypto.randomUUID(),
-    "read-status": "not read",
+    "read-status": "read",
   },
 ];
 
@@ -44,30 +42,38 @@ function toggleRead(index) {
   displayBooks();
 }
 
-function addBookToLibrary(title, author, pages) {
-  let book = new Book(title, author, pages);
+function addBookToLibrary(title, author, pages, read) {
+  let book = new Book(title, author, pages, read);
   // Universally Unique Identifier = uuid
-  book.id = self.crypto.randomUUID();
+  // book.id = self.crypto.randomUUID();
   myLibrary.push(book);
   return myLibrary;
 }
 
 console.log(myLibrary);
-console.log(addBookToLibrary("Testtitel 1", "Testauthor 1", "77"));
-console.log(addBookToLibrary("Testtitel 2", "Testauthor 2", "122"));
 
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
     let content = document.createElement("tr");
     content.classList.add(`bookEntity${i}`);
     content.setAttribute("data-id", `${myLibrary[i].id}`);
-    content.innerHTML = `<td>${myLibrary[i].title}</td>
+    if (myLibrary[i]["read-status"] == "not read") {
+      content.innerHTML = `<td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
             <td>
             <input type="checkbox" class="read-status" id="read${i}" name="read-status">
             </td>
             <td class="buttons"><button type="button" id="removeButton${i}" class="remove-button">Remove</button></td>`;
+    } else {
+      content.innerHTML = `<td>${myLibrary[i].title}</td>
+            <td>${myLibrary[i].author}</td>
+            <td>${myLibrary[i].pages}</td>
+            <td>
+            <input type="checkbox" class="read-status" id="read${i}" name="read-status" checked>
+            </td>
+            <td class="buttons"><button type="button" id="removeButton${i}" class="remove-button">Remove</button></td>`;
+    }
     tableBody.appendChild(content);
   }
   removeButtonsNodeList = document.querySelectorAll(".remove-button");
@@ -89,18 +95,18 @@ function listenForRemoveBtnClick() {
 
 function listenForCheckboxChange() {
   for (let i = 0; i < readStatusNodeList.length; i++) {
-    readStatusNodeList[i].addEventListener("change", function(event) {
+    readStatusNodeList[i].addEventListener("change", function (event) {
       if (event.target.checked) {
         console.log(event);
         console.log("Checkbox is checked..");
         myLibrary[i]["read-status"] = "read";
         console.log(myLibrary);
-      }else{
+      } else {
         console.log("Checkbox is not checked ");
         myLibrary[i]["read-status"] = "not read";
         console.log(myLibrary);
       }
-      });
+    });
   }
 }
 
@@ -109,7 +115,6 @@ function removeBook(index) {
   clearTable();
   displayBooks();
 }
-
 
 function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
