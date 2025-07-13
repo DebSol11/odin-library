@@ -106,13 +106,10 @@ function listenForCheckboxChange() {
 
 function removeBook(index) {
   myLibrary.splice(index, 1);
-  -
+  clearTable()
   displayBooks();
 }
 
-// function addReadStatusToMyLibraryArray(index) {
-//   myLibrary[index]["read-status"].value;
-// }
 
 function toggleFormDisplay() {
   const form = document.getElementById("formToggle");
