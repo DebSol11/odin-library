@@ -1,5 +1,11 @@
+:root {
+    --global-margin-left: 10px;
+    --global-margin-right: 10px;
+    --global-margin-top: 10px;
+}
+
 * {
-    outline: 1px solid red;
+    /* outline: 1px solid red; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -21,7 +27,7 @@ form {
 
 td {
     vertical-align: middle;
-
+    border: 1px solid black;
 }
 
 tr {
@@ -30,4 +36,24 @@ tr {
 
 td.buttons {
     text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid black;
+    border-bottom: 2px solid black;
+    text-align: left;
+}
+
+button.newBookButton, table, form {
+    margin-top: var(--global-margin-top);
+    margin-left: var(--global-margin-left);
+    margin-right: var(--global-margin-right);
+}
+
+td, th {
+    padding-left: 2px;
 }
