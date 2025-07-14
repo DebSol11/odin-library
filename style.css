@@ -22,7 +22,12 @@ form {
 }
 
 .checkbox-table-cell {
-    text-align: center;
+    padding-left: 0;
+}
+
+input.read-status {
+    margin: auto;
+    display: block;
 }
 
 td {
@@ -31,11 +36,11 @@ td {
 }
 
 tr {
-    vertical-align: sub;
 }
 
 td.buttons {
     text-align: center;
+    padding-left: 0px;
 }
 
 table {
