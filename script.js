@@ -202,7 +202,6 @@ title.addEventListener("input", (event) => {
   }
 });
 
-
 author.addEventListener("input", (event) => {
   if (author.validity.valid) {
     authorError.textContent = ""; // Remove the message content
