@@ -5,6 +5,10 @@ const submitBtn = document.querySelector("#submitBtn");
 const newBookButton = document.querySelector(".newBookButton");
 const form = document.querySelector("form");
 const contentWrap = document.querySelector(".content-wrap");
+const title = document.getElementById("title");
+const titleError = document.querySelector("#title + span.error");
+const author = document.getElementById("author");
+const authorError = document.querySelector("#author + span.error");
 let removeButtonsNodeList;
 
 // Global Scope Array of Objects
@@ -144,11 +148,21 @@ newBookButton.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", (event) => {
+  // if the email field is invalid
+  if (!title.validity.valid) {
+    // display an appropriate error message
+    showError();
+  } else if (!author.validity.valid) {
+    // display an appropriate error message
+    showError();
+  } else {
+    clearTable();
+    addInput();
+    displayBooks();
+    toggleFormDisplay();
+  }
+  // prevent form submission
   event.preventDefault();
-  clearTable();
-  addInput();
-  displayBooks();
-  toggleFormDisplay();
 });
 
 function addInput() {
@@ -176,4 +190,40 @@ function clearTable() {
     // The loop starts from the last row and goes backwards. When we loop in forward, the position (index) of the remaining rows would change after each deletion. So to prevent this issue, we loop in reverse.
     tableBody.deleteRow(i);
   }
+}
+
+title.addEventListener("input", (event) => {
+  if (title.validity.valid) {
+    titleError.textContent = ""; // Remove the message content
+    titleError.className = "error"; // Removes the 'active' class
+  } else {
+    // If there is still an error, show the correct error
+    showError();
+  }
+});
+
+
+author.addEventListener("input", (event) => {
+  if (author.validity.valid) {
+    authorError.textContent = ""; // Remove the message content
+    authorError.className = "error"; // Removes the 'active' class
+  } else {
+    // If there is still an error, show the correct error
+    showError();
+  }
+});
+
+function showError() {
+  if (title.validity.valueMissing) {
+    // If empty
+    titleError.textContent = "You need to enter a title.";
+  }
+  // Add the `active` class
+  titleError.className = "error active";
+  if (author.validity.valueMissing) {
+    // If empty
+    authorError.textContent = "You need to enter an author.";
+  }
+  // Add the `active` class
+  authorError.className = "error active";
 }

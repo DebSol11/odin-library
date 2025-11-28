@@ -1,61 +1,105 @@
 :root {
-    --global-margin-left: 10px;
-    --global-margin-right: 10px;
-    --global-margin-top: 10px;
+  --global-margin-left: 10px;
+  --global-margin-right: 10px;
+  --global-margin-top: 10px;
 }
 
 * {
-    /* outline: 1px solid red; */
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  /* outline: 1px solid red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 form {
-    display: none;
+  display: none;
 }
 
 .content-wrap {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .checkbox-table-cell {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 input.read-status {
-    margin: auto;
-    display: block;
+  margin: auto;
+  display: block;
 }
 
 td {
-    vertical-align: middle;
-    border: 1px solid black;
+  vertical-align: middle;
+  border: 1px solid black;
 }
 
 td.buttons {
-    text-align: center;
-    padding-left: 0px;
+  text-align: center;
+  padding-left: 0px;
 }
 
 table {
-    border-collapse: collapse;
+  border-collapse: collapse;
 }
 
 th {
-    border: 1px solid black;
-    border-bottom: 2px solid black;
-    text-align: left;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+  text-align: left;
 }
 
-button.newBookButton, table, form {
-    margin-top: var(--global-margin-top);
-    margin-left: var(--global-margin-left);
-    margin-right: var(--global-margin-right);
+button.newBookButton,
+table,
+form {
+  margin-top: var(--global-margin-top);
+  margin-left: var(--global-margin-left);
+  margin-right: var(--global-margin-right);
 }
 
-td, th {
-    padding-left: 2px;
+td,
+th {
+  padding-left: 2px;
+}
+
+/******custom form validation******/
+input[type="text"] {
+  appearance: none;
+
+  width: 100%;
+  border: 1px solid #333333;
+  margin: 0;
+
+  font-family: inherit;
+  font-size: 90%;
+
+  box-sizing: border-box;
+}
+
+/* invalid fields */
+input:invalid {
+  border-color: #990000;
+  background-color: #ffdddd;
+}
+
+input:focus:invalid {
+  outline: none;
+}
+
+/* error message styles */
+.error {
+  display: block;
+  width: 100%;
+  padding: 0;
+
+  font-size: 80%;
+  color: white;
+  background-color: #990000;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  
 }
