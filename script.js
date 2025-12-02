@@ -9,6 +9,8 @@ const title = document.getElementById("title");
 const titleError = document.querySelector("#title + span.error");
 const author = document.getElementById("author");
 const authorError = document.querySelector("#author + span.error");
+const pages = document.getElementById("pages");
+const pagesError = document.querySelector("#pages + span.error");
 let removeButtonsNodeList;
 
 // Global Scope Array of Objects
@@ -27,7 +29,7 @@ const myLibrary = [
   },
 ];
 
-// Turn constructor into a class
+// Turn class into factory function, darling!
 
 class Book {
   constructor({ title, author, pages, read }) {
@@ -41,20 +43,6 @@ class Book {
   }
 }
 
-// function Book(title, author, pages, read) {
-//   if (!new.target) {
-//     throw Error("You must use the 'new' operator to call the constructor");
-//   }
-//   this.title = title;
-//   this.author = author;
-//   this.pages = pages;
-//   this.read = read;
-// }
-
-// Book.prototype.toggleRead = function () {
-//   this.read = !this.read;
-// };
-
 function toggleRead(index) {
   myLibrary[index].toggleRead();
   displayBooks();
@@ -63,12 +51,11 @@ function toggleRead(index) {
 function addBookToLibrary(title, author, pages, read) {
   let book = new Book(title, author, pages, read);
   // Universally Unique Identifier = uuid
+  // Keep for sorting LATER
   // book.id = self.crypto.randomUUID();
   myLibrary.push(book);
   return myLibrary;
 }
-
-console.log(myLibrary);
 
 function displayBooks() {
   for (let i = 0; i < myLibrary.length; i++) {
@@ -98,7 +85,6 @@ function displayBooks() {
   listenForRemoveBtnClick();
   readStatusNodeList = document.querySelectorAll(".read-status");
   listenForCheckboxChange();
-  console.log(myLibrary);
 }
 
 displayBooks();
@@ -115,14 +101,9 @@ function listenForCheckboxChange() {
   for (let i = 0; i < readStatusNodeList.length; i++) {
     readStatusNodeList[i].addEventListener("change", function (event) {
       if (event.target.checked) {
-        console.log(event);
-        console.log("Checkbox is checked..");
         myLibrary[i]["read-status"] = "read";
-        console.log(myLibrary);
       } else {
-        console.log("Checkbox is not checked ");
         myLibrary[i]["read-status"] = "not read";
-        console.log(myLibrary);
       }
     });
   }
@@ -148,12 +129,10 @@ newBookButton.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", (event) => {
-  // if the email field is invalid
-  if (!title.validity.valid) {
-    // display an appropriate error message
-    showError();
-  } else if (!author.validity.valid) {
-    // display an appropriate error message
+  // custom validity check
+  if (!title.validity.valid ||
+    !author.validity.valid ||
+    !pages.validity.valid) {
     showError();
   } else {
     clearTable();
@@ -192,6 +171,8 @@ function clearTable() {
   }
 }
 
+/***** Custom form validation *****/
+
 title.addEventListener("input", (event) => {
   if (title.validity.valid) {
     titleError.textContent = ""; // Remove the message content
@@ -212,17 +193,33 @@ author.addEventListener("input", (event) => {
   }
 });
 
+pages.addEventListener("input", (event) => {
+  if (pages.validity.valid) {
+    pagesError.textContent = ""; // Remove the message content
+    pagesError.className = "error"; // Removes the 'active' class
+  } else {
+    // If there is still an error, show the correct error
+    showError();
+  }
+});
+
 function showError() {
   if (title.validity.valueMissing) {
     // If empty
-    titleError.textContent = "You need to enter a title.";
+    titleError.textContent = "Please enter a title.";
   }
   // Add the `active` class
   titleError.className = "error active";
   if (author.validity.valueMissing) {
     // If empty
-    authorError.textContent = "You need to enter an author.";
+    authorError.textContent = "Who wrote that piece of art? Enter that sucker immediately.";
   }
   // Add the `active` class
   authorError.className = "error active";
+  if (pages.validity.valueMissing) {
+    // If empty
+    pagesError.textContent = "How many pages does the book have, darling? Please enter this number.";
+  }
+  // Add the `active` class
+  pagesError.className = "error active";
 }
